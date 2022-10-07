@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="cc3bd3a" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.0.0" camunda:diagramRelationId="1a117cd4-3ec8-40cc-9aca-f8ba9f5830af">
+  <bpmn:process id="Lohnsteuer-2022" name="Lohnsteuer 2022" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="Lohnsteuer 2022 soll berechnet werden">
+      <bpmn:outgoing>Flow_1prkvou</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_1tkbk2y" name="Lohnsteuer berechnet">
+      <bpmn:incoming>Flow_1nz3kco</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1prkvou" sourceRef="StartEvent_1" targetRef="Activity_1panxg2" />
+    <bpmn:sequenceFlow id="Flow_1chzrnn" sourceRef="Activity_1panxg2" targetRef="Activity_0xtadq3" />
+    <bpmn:callActivity id="Activity_1panxg2" name="MPARA">
+      <bpmn:extensionElements>
+        <zeebe:calledElement processId="MPARA-Unterprozess" propagateAllChildVariables="true" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1prkvou</bpmn:incoming>
+      <bpmn:outgoing>Flow_1chzrnn</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_1ee0lic" sourceRef="Activity_0xtadq3" targetRef="Activity_1fax6dl" />
+    <bpmn:callActivity id="Activity_0xtadq3" name="MRE4JL">
+      <bpmn:extensionElements>
+        <zeebe:calledElement processId="MRE4JL-Unterprozess" propagateAllChildVariables="true" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1chzrnn</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ee0lic</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_03w92dd" sourceRef="Activity_1fax6dl" targetRef="Activity_0qr9adn" />
+    <bpmn:sequenceFlow id="Flow_0vow6g1" sourceRef="Activity_0qr9adn" targetRef="Activity_1tmakxr" />
+    <bpmn:sequenceFlow id="Flow_0gyevu3" sourceRef="Activity_1tmakxr" targetRef="Activity_0kfbgnw" />
+    <bpmn:callActivity id="Activity_1tmakxr" name="MRE4">
+      <bpmn:extensionElements>
+        <zeebe:calledElement processId="MRE4E-Unterprozess" propagateAllChildVariables="true" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0vow6g1</bpmn:incoming>
+      <bpmn:outgoing>Flow_0gyevu3</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_1rsxmoc" sourceRef="Activity_0kfbgnw" targetRef="Activity_1vyhx0k" />
+    <bpmn:callActivity id="Activity_0kfbgnw" name="MRE4ABZ">
+      <bpmn:extensionElements>
+        <zeebe:calledElement processId="Noop-Unterprozess" propagateAllChildVariables="false" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0gyevu3</bpmn:incoming>
+      <bpmn:outgoing>Flow_1rsxmoc</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_1bb4b11" sourceRef="Activity_1vyhx0k" targetRef="Activity_1ftpwv5" />
+    <bpmn:callActivity id="Activity_1vyhx0k" name="MBERECH">
+      <bpmn:extensionElements>
+        <zeebe:calledElement processId="Noop-Unterprozess" propagateAllChildVariables="false" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1rsxmoc</bpmn:incoming>
+      <bpmn:outgoing>Flow_1bb4b11</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_0pveav5" sourceRef="Activity_1ftpwv5" targetRef="Activity_17c0jci" />
+    <bpmn:sequenceFlow id="Flow_1nz3kco" sourceRef="Activity_17c0jci" targetRef="Event_1tkbk2y" />
+    <bpmn:callActivity id="Activity_1ftpwv5" name="MSONST">
+      <bpmn:extensionElements>
+        <zeebe:calledElement processId="Noop-Unterprozess" propagateAllChildVariables="false" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1bb4b11</bpmn:incoming>
+      <bpmn:outgoing>Flow_0pveav5</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:callActivity id="Activity_17c0jci" name="MVMT">
+      <bpmn:extensionElements>
+        <zeebe:calledElement processId="Noop-Unterprozess" propagateAllChildVariables="false" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0pveav5</bpmn:incoming>
+      <bpmn:outgoing>Flow_1nz3kco</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:serviceTask id="Activity_1fax6dl" name="VBEZBSO = 0">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="noop" />
+        <zeebe:ioMapping>
+          <zeebe:output source="=0" target="VBEZBSO" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1ee0lic</bpmn:incoming>
+      <bpmn:outgoing>Flow_03w92dd</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_0qr9adn" name="KENNVMT = 0">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="noop" />
+        <zeebe:ioMapping>
+          <zeebe:output source="=0" target="KENNVMT" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_03w92dd</bpmn:incoming>
+      <bpmn:outgoing>Flow_0vow6g1</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:textAnnotation id="TextAnnotation_1wz7hg1">
+      <bpmn:text>Zuweisung von Werten für bestimmte
+Sozialversicherungsparameter</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_097ht64" sourceRef="Activity_1panxg2" targetRef="TextAnnotation_1wz7hg1" />
+    <bpmn:textAnnotation id="TextAnnotation_174iukt">
+      <bpmn:text>Ermittlung des Jahresarbeitslohns nach
+§ 39b Absatz 2 Satz 2 EStG</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0vtay0j" sourceRef="Activity_0xtadq3" targetRef="TextAnnotation_174iukt" />
+    <bpmn:textAnnotation id="TextAnnotation_0ztuvc7">
+      <bpmn:text>Ermittlung der Freibeträge nach § 39b
+Absatz 2 Satz 3 EStG</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_16a8ms3" sourceRef="Activity_1tmakxr" targetRef="TextAnnotation_0ztuvc7" />
+    <bpmn:textAnnotation id="TextAnnotation_0zq9efs">
+      <bpmn:text>Abzug der Freibeträge nach § 39b Absatz 2
+Satz 3 und 4 EStG vom Jahresarbeitslohn</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_02uk8xk" sourceRef="Activity_0kfbgnw" targetRef="TextAnnotation_0zq9efs" />
+    <bpmn:textAnnotation id="TextAnnotation_0sry5rk">
+      <bpmn:text>Ermittlung der Jahreslohnsteuer auf
+laufende Bezüge</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0u7tblb" sourceRef="Activity_1vyhx0k" targetRef="TextAnnotation_0sry5rk" />
+    <bpmn:textAnnotation id="TextAnnotation_1eonql1">
+      <bpmn:text>Berechnung sonstiger Bezüge ohne
+Vergütung für mehrjährige Tätigkeit</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_13rbevx" sourceRef="Activity_1ftpwv5" targetRef="TextAnnotation_1eonql1" />
+    <bpmn:textAnnotation id="TextAnnotation_0v42fri">
+      <bpmn:text>Berechnung der Vergütung für mehrjährige
+Tätigkeit</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0y2targ" sourceRef="Activity_17c0jci" targetRef="TextAnnotation_0v42fri" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Lohnsteuer-2022">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="150" y="190" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="127" y="233" width="83" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1tkbk2y_di" bpmnElement="Event_1tkbk2y">
+        <dc:Bounds x="1652" y="190" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1642" y="233" width="56" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ccgzcs_di" bpmnElement="Activity_1panxg2">
+        <dc:Bounds x="250" y="168" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_16j9ze4_di" bpmnElement="Activity_0xtadq3">
+        <dc:Bounds x="410" y="168" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1hqm6rn_di" bpmnElement="Activity_1tmakxr">
+        <dc:Bounds x="890" y="168" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1iv3wzu_di" bpmnElement="Activity_0kfbgnw">
+        <dc:Bounds x="1040" y="168" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_11cm4us_di" bpmnElement="Activity_1vyhx0k">
+        <dc:Bounds x="1190" y="168" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0h95aay_di" bpmnElement="Activity_1ftpwv5">
+        <dc:Bounds x="1340" y="168" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0o00wg9_di" bpmnElement="Activity_17c0jci">
+        <dc:Bounds x="1490" y="168" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_06v9afh_di" bpmnElement="Activity_1fax6dl">
+        <dc:Bounds x="570" y="168" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0wb31gy_di" bpmnElement="Activity_0qr9adn">
+        <dc:Bounds x="730" y="168" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1wz7hg1_di" bpmnElement="TextAnnotation_1wz7hg1">
+        <dc:Bounds x="220" y="70" width="190" height="60" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_174iukt_di" bpmnElement="TextAnnotation_174iukt">
+        <dc:Bounds x="430" y="70" width="160" height="54" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0ztuvc7_di" bpmnElement="TextAnnotation_0ztuvc7">
+        <dc:Bounds x="860" y="70" width="160" height="54" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0zq9efs_di" bpmnElement="TextAnnotation_0zq9efs">
+        <dc:Bounds x="1030" y="70" width="140" height="70" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0sry5rk_di" bpmnElement="TextAnnotation_0sry5rk">
+        <dc:Bounds x="1180" y="70" width="130" height="60" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1eonql1_di" bpmnElement="TextAnnotation_1eonql1">
+        <dc:Bounds x="1330" y="70" width="150" height="70" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0v42fri_di" bpmnElement="TextAnnotation_0v42fri">
+        <dc:Bounds x="1490" y="70" width="162" height="54" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1prkvou_di" bpmnElement="Flow_1prkvou">
+        <di:waypoint x="186" y="208" />
+        <di:waypoint x="250" y="208" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1chzrnn_di" bpmnElement="Flow_1chzrnn">
+        <di:waypoint x="350" y="208" />
+        <di:waypoint x="410" y="208" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ee0lic_di" bpmnElement="Flow_1ee0lic">
+        <di:waypoint x="510" y="208" />
+        <di:waypoint x="570" y="208" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03w92dd_di" bpmnElement="Flow_03w92dd">
+        <di:waypoint x="670" y="208" />
+        <di:waypoint x="730" y="208" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0vow6g1_di" bpmnElement="Flow_0vow6g1">
+        <di:waypoint x="830" y="208" />
+        <di:waypoint x="890" y="208" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0gyevu3_di" bpmnElement="Flow_0gyevu3">
+        <di:waypoint x="990" y="208" />
+        <di:waypoint x="1040" y="208" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1rsxmoc_di" bpmnElement="Flow_1rsxmoc">
+        <di:waypoint x="1140" y="208" />
+        <di:waypoint x="1190" y="208" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1bb4b11_di" bpmnElement="Flow_1bb4b11">
+        <di:waypoint x="1290" y="208" />
+        <di:waypoint x="1340" y="208" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0pveav5_di" bpmnElement="Flow_0pveav5">
+        <di:waypoint x="1440" y="208" />
+        <di:waypoint x="1490" y="208" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1nz3kco_di" bpmnElement="Flow_1nz3kco">
+        <di:waypoint x="1590" y="208" />
+        <di:waypoint x="1652" y="208" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_097ht64_di" bpmnElement="Association_097ht64">
+        <di:waypoint x="290" y="168" />
+        <di:waypoint x="281" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0vtay0j_di" bpmnElement="Association_0vtay0j">
+        <di:waypoint x="466" y="168" />
+        <di:waypoint x="473" y="124" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_16a8ms3_di" bpmnElement="Association_16a8ms3">
+        <di:waypoint x="930" y="168" />
+        <di:waypoint x="920" y="124" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_02uk8xk_di" bpmnElement="Association_02uk8xk">
+        <di:waypoint x="1087" y="168" />
+        <di:waypoint x="1084" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0u7tblb_di" bpmnElement="Association_0u7tblb">
+        <di:waypoint x="1237" y="168" />
+        <di:waypoint x="1234" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_13rbevx_di" bpmnElement="Association_13rbevx">
+        <di:waypoint x="1387" y="168" />
+        <di:waypoint x="1384" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0y2targ_di" bpmnElement="Association_0y2targ">
+        <di:waypoint x="1540" y="168" />
+        <di:waypoint x="1540" y="124" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
