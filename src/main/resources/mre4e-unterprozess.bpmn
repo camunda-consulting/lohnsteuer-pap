@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="cc3bd3a" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.0.0" camunda:diagramRelationId="0f50fd8b-0e82-4fa4-99db-5a13bd517ecf">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.3.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.0.0" camunda:diagramRelationId="0f50fd8b-0e82-4fa4-99db-5a13bd517ecf">
   <bpmn:process id="MRE4E-Unterprozess" name="MRE4E Unterprozess" isExecutable="true">
-    <bpmn:startEvent id="StartEvent_1" name="Freibetr&#228;ge sollen ermittelt werden">
+    <bpmn:startEvent id="StartEvent_1" name="Freibeträge sollen ermittelt werden">
       <bpmn:outgoing>Flow_1qat2jv</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:exclusiveGateway id="Gateway_12a4c31" name="ZVBEZJ = 0?">
@@ -425,12 +425,12 @@
     <bpmn:sequenceFlow id="Flow_0p4s5kh" sourceRef="Gateway_01qurw1" targetRef="Gateway_05i3e0o" />
     <bpmn:callActivity id="Activity_10ctaqd" name="MRE4ALTE">
       <bpmn:extensionElements>
-        <zeebe:calledElement processId="MRE4ALTE-Unterprozess" propagateAllChildVariables="false" />
+        <zeebe:calledElement processId="MRE4ALTE-Unterprozess" propagateAllChildVariables="true" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0olwg7f</bpmn:incoming>
       <bpmn:outgoing>Flow_14xeiub</bpmn:outgoing>
     </bpmn:callActivity>
-    <bpmn:endEvent id="Event_0e4m9ss" name="Freibetr&#228;ge ermittelt">
+    <bpmn:endEvent id="Event_0e4m9ss" name="Freibeträge ermittelt">
       <bpmn:incoming>Flow_14xeiub</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_14xeiub" sourceRef="Activity_10ctaqd" targetRef="Event_0e4m9ss" />

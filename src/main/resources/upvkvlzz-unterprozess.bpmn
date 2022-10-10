@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="cc3bd3a" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.0.0" camunda:diagramRelationId="77cc79b8-cceb-4918-8ee6-81eed45e55b3">
+  <bpmn:process id="UPVKVLZZ-Unterprozess" name="UPVKVLZZ Unterprozess" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="UPVKVLZZ soll gestartet werden">
+      <bpmn:outgoing>Flow_12z0fet</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_12z0fet" sourceRef="StartEvent_1" targetRef="Activity_0pikt7u" />
+    <bpmn:callActivity id="Activity_0pikt7u" name="UPVKV">
+      <bpmn:extensionElements>
+        <zeebe:calledElement processId="UPVKV-Unterprozess" propagateAllChildVariables="true" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_12z0fet</bpmn:incoming>
+      <bpmn:outgoing>Flow_0s50s7r</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_0s50s7r" sourceRef="Activity_0pikt7u" targetRef="Activity_07y83y0" />
+    <bpmn:sequenceFlow id="Flow_101g760" sourceRef="Activity_07y83y0" targetRef="Activity_0rqczmx" />
+    <bpmn:sequenceFlow id="Flow_18z29ra" sourceRef="Activity_0rqczmx" targetRef="Activity_0aanf3r" />
+    <bpmn:callActivity id="Activity_0rqczmx" name="UPANTEIL">
+      <bpmn:extensionElements>
+        <zeebe:calledElement processId="UPANTEIL-Unterprozess" propagateAllChildVariables="false" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_101g760</bpmn:incoming>
+      <bpmn:outgoing>Flow_18z29ra</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:endEvent id="Event_19g1jyi" name="UPVKVLZZ abgeschlossen">
+      <bpmn:incoming>Flow_0q6zf5w</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0q6zf5w" sourceRef="Activity_0aanf3r" targetRef="Event_19g1jyi" />
+    <bpmn:serviceTask id="Activity_07y83y0" name="Setze JW = VKV">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="noop" />
+        <zeebe:ioMapping>
+          <zeebe:output source="=VKV" target="JW" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0s50s7r</bpmn:incoming>
+      <bpmn:outgoing>Flow_101g760</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_0aanf3r" name="Setze VKVLZZ = ANTEIL1">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="noop" />
+        <zeebe:ioMapping>
+          <zeebe:output source="=ANTEIL1" target="VKVLZZ" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_18z29ra</bpmn:incoming>
+      <bpmn:outgoing>Flow_0q6zf5w</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:textAnnotation id="TextAnnotation_086i5fr">
+      <bpmn:text>Ermittlung des Jahreswertes der
+berücksichtigten privaten Kranken- und
+Pflegeversicherungsbeiträge</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0uo5oyx" sourceRef="Activity_0pikt7u" targetRef="TextAnnotation_086i5fr" />
+    <bpmn:textAnnotation id="TextAnnotation_1fiw9b7">
+      <bpmn:text>Ermittlung des Anteils der berücksichtigten
+privaten Kranken- und Pflegeversiche-
+rungsbeiträge für den Lohnzahlungszeitraum</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_03xg1ro" sourceRef="Activity_0rqczmx" targetRef="TextAnnotation_1fiw9b7" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="UPVKVLZZ-Unterprozess">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="150" y="190" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="126" y="233" width="85" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0o9gl1u_di" bpmnElement="Activity_0pikt7u">
+        <dc:Bounds x="240" y="168" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0z2nu3s_di" bpmnElement="Activity_0rqczmx">
+        <dc:Bounds x="560" y="168" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_19g1jyi_di" bpmnElement="Event_19g1jyi">
+        <dc:Bounds x="882" y="190" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="863" y="233" width="75" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1aydww5_di" bpmnElement="Activity_07y83y0">
+        <dc:Bounds x="400" y="168" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0631qgh_di" bpmnElement="Activity_0aanf3r">
+        <dc:Bounds x="720" y="168" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_086i5fr_di" bpmnElement="TextAnnotation_086i5fr">
+        <dc:Bounds x="200" y="80" width="234" height="49" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1fiw9b7_di" bpmnElement="TextAnnotation_1fiw9b7">
+        <dc:Bounds x="530" y="80" width="266" height="53" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_12z0fet_di" bpmnElement="Flow_12z0fet">
+        <di:waypoint x="186" y="208" />
+        <di:waypoint x="240" y="208" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0s50s7r_di" bpmnElement="Flow_0s50s7r">
+        <di:waypoint x="340" y="208" />
+        <di:waypoint x="400" y="208" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_101g760_di" bpmnElement="Flow_101g760">
+        <di:waypoint x="500" y="208" />
+        <di:waypoint x="560" y="208" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18z29ra_di" bpmnElement="Flow_18z29ra">
+        <di:waypoint x="660" y="208" />
+        <di:waypoint x="720" y="208" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0q6zf5w_di" bpmnElement="Flow_0q6zf5w">
+        <di:waypoint x="820" y="208" />
+        <di:waypoint x="882" y="208" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0uo5oyx_di" bpmnElement="Association_0uo5oyx">
+        <di:waypoint x="249" y="168" />
+        <di:waypoint x="210" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_03xg1ro_di" bpmnElement="Association_03xg1ro">
+        <di:waypoint x="574" y="168" />
+        <di:waypoint x="543" y="133" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

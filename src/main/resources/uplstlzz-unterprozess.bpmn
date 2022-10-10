@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="cc3bd3a" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.0.0" camunda:diagramRelationId="539810e2-d810-4f14-9cac-efa11741fc20">
+  <bpmn:process id="UPLSTLZZ-Unterprozess" name="UPLSTLZZ Unterprozess" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="UPLSTLZZ soll durchlaufen werden">
+      <bpmn:outgoing>Flow_1q0s60i</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1q0s60i" sourceRef="StartEvent_1" targetRef="Activity_05m7wg5" />
+    <bpmn:serviceTask id="Activity_05m7wg5" name="Setze JW = LSTJAHR * 100">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="noop" />
+        <zeebe:ioMapping>
+          <zeebe:output source="=LSTJAHR * 100" target="JW" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1q0s60i</bpmn:incoming>
+      <bpmn:outgoing>Flow_1omekcw</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_1omekcw" sourceRef="Activity_05m7wg5" targetRef="Activity_1hbhs84" />
+    <bpmn:callActivity id="Activity_1hbhs84" name="UPANTEIL">
+      <bpmn:extensionElements>
+        <zeebe:calledElement processId="UPANTEIL-Unterprozess" propagateAllChildVariables="true" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1omekcw</bpmn:incoming>
+      <bpmn:outgoing>Flow_1vfw778</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_1vfw778" sourceRef="Activity_1hbhs84" targetRef="Activity_1uv84kb" />
+    <bpmn:serviceTask id="Activity_1uv84kb" name="Setze LSTLZZ = ANTEIL1">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="noop" />
+        <zeebe:ioMapping>
+          <zeebe:output source="=ANTEIL1" target="LSTLZZ" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1vfw778</bpmn:incoming>
+      <bpmn:outgoing>Flow_1pa1yqn</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_08u4ona" name="UPLSTLZZ durchlaufen">
+      <bpmn:incoming>Flow_1pa1yqn</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1pa1yqn" sourceRef="Activity_1uv84kb" targetRef="Event_08u4ona" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="UPLSTLZZ-Unterprozess">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="150" y="100" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="132" y="143" width="72" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_09wsbwg_di" bpmnElement="Activity_05m7wg5">
+        <dc:Bounds x="240" y="78" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0rfrc4l_di" bpmnElement="Activity_1hbhs84">
+        <dc:Bounds x="400" y="78" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ncuei6_di" bpmnElement="Activity_1uv84kb">
+        <dc:Bounds x="560" y="78" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_08u4ona_di" bpmnElement="Event_08u4ona">
+        <dc:Bounds x="722" y="100" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="711" y="143" width="59" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1q0s60i_di" bpmnElement="Flow_1q0s60i">
+        <di:waypoint x="186" y="118" />
+        <di:waypoint x="240" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1omekcw_di" bpmnElement="Flow_1omekcw">
+        <di:waypoint x="340" y="118" />
+        <di:waypoint x="400" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1vfw778_di" bpmnElement="Flow_1vfw778">
+        <di:waypoint x="500" y="118" />
+        <di:waypoint x="560" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1pa1yqn_di" bpmnElement="Flow_1pa1yqn">
+        <di:waypoint x="660" y="118" />
+        <di:waypoint x="722" y="118" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

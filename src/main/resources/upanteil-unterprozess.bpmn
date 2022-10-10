@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="cc3bd3a" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.0.0" camunda:diagramRelationId="7d9cf8c9-9cf0-4fcc-847e-280bf44305fd">
+  <bpmn:process id="UPANTEIL-Unterprozess" name="UPANTEIL Unterprozess" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="Anteil von Jahresbetr&#228;gen f&#252;r einen LZZ sollen berechnet werden">
+      <bpmn:outgoing>Flow_0hozpvs</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:exclusiveGateway id="Gateway_0l2ou0r" name="LZZ = 1?">
+      <bpmn:incoming>Flow_0hozpvs</bpmn:incoming>
+      <bpmn:outgoing>Flow_0qqm24u</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0fnghw8</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0hozpvs" sourceRef="StartEvent_1" targetRef="Gateway_0l2ou0r" />
+    <bpmn:sequenceFlow id="Flow_0qqm24u" name="ja" sourceRef="Gateway_0l2ou0r" targetRef="Activity_1g04ain">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=LZZ = 1</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:serviceTask id="Activity_1g04ain" name="Setze ANTEIL1 = JW">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="noop" />
+        <zeebe:ioMapping>
+          <zeebe:output source="=JW" target="ANTEIL1" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0qqm24u</bpmn:incoming>
+      <bpmn:outgoing>Flow_0l5bexf</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="Gateway_0xzg8nd" name="LZZ = 2?">
+      <bpmn:incoming>Flow_0fnghw8</bpmn:incoming>
+      <bpmn:outgoing>Flow_0ac39rc</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1bqtio2</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0fnghw8" name="nein" sourceRef="Gateway_0l2ou0r" targetRef="Gateway_0xzg8nd">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=LZZ != 1</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0ac39rc" name="ja" sourceRef="Gateway_0xzg8nd" targetRef="Activity_0jb3342">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=LZZ = 2</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:serviceTask id="Activity_0jb3342" name="Setze ANTEIL1 = JW / 12">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="noop" />
+        <zeebe:ioMapping>
+          <zeebe:output source="=JW / 12" target="ANTEIL1" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0ac39rc</bpmn:incoming>
+      <bpmn:outgoing>Flow_1px0gfp</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="Gateway_0pe3k5t" name="LZZ = 3?">
+      <bpmn:incoming>Flow_1bqtio2</bpmn:incoming>
+      <bpmn:outgoing>Flow_1bpsckh</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1o73h85</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1bqtio2" name="nein" sourceRef="Gateway_0xzg8nd" targetRef="Gateway_0pe3k5t">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=LZZ != 2</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1bpsckh" name="ja" sourceRef="Gateway_0pe3k5t" targetRef="Activity_01d058x">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=LZZ = 3</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:serviceTask id="Activity_01d058x" name="Setze ANTEIL1 = JW * 7 / 360">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="noop" />
+        <zeebe:ioMapping>
+          <zeebe:output source="=JW * 7 / 360" target="ANTEIL1" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1bpsckh</bpmn:incoming>
+      <bpmn:outgoing>Flow_0b4hsii</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_1o73h85" name="nein" sourceRef="Gateway_0pe3k5t" targetRef="Activity_0nyzr1d">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=LZZ != 3</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:serviceTask id="Activity_0nyzr1d" name="Setze ANTEIL1 = JW / 360">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="noop" />
+        <zeebe:ioMapping>
+          <zeebe:output source="=JW / 360" target="ANTEIL1" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1o73h85</bpmn:incoming>
+      <bpmn:outgoing>Flow_0113xa6</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="Gateway_0m91liq">
+      <bpmn:incoming>Flow_0113xa6</bpmn:incoming>
+      <bpmn:incoming>Flow_0b4hsii</bpmn:incoming>
+      <bpmn:incoming>Flow_1px0gfp</bpmn:incoming>
+      <bpmn:incoming>Flow_0l5bexf</bpmn:incoming>
+      <bpmn:outgoing>Flow_0sxjbrb</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0113xa6" sourceRef="Activity_0nyzr1d" targetRef="Gateway_0m91liq" />
+    <bpmn:sequenceFlow id="Flow_0b4hsii" sourceRef="Activity_01d058x" targetRef="Gateway_0m91liq" />
+    <bpmn:sequenceFlow id="Flow_1px0gfp" sourceRef="Activity_0jb3342" targetRef="Gateway_0m91liq" />
+    <bpmn:sequenceFlow id="Flow_0l5bexf" sourceRef="Activity_1g04ain" targetRef="Gateway_0m91liq" />
+    <bpmn:endEvent id="Event_1d0blqr" name="Anteil berechnet">
+      <bpmn:incoming>Flow_0sxjbrb</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0sxjbrb" sourceRef="Gateway_0m91liq" targetRef="Event_1d0blqr" />
+    <bpmn:textAnnotation id="TextAnnotation_0fdvmg6">
+      <bpmn:text>Anteil von Jahresbeträgen für einen
+LZZ (§ 39b Absatz 2 Satz 9 EStG)</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1nhrst0" sourceRef="StartEvent_1" targetRef="TextAnnotation_0fdvmg6" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="UPANTEIL-Unterprozess">
+      <bpmndi:BPMNShape id="TextAnnotation_0fdvmg6_di" bpmnElement="TextAnnotation_0fdvmg6">
+        <dc:Bounds x="160" y="80" width="211" height="44" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="150" y="180" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="128" y="223" width="81" height="66" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0l2ou0r_di" bpmnElement="Gateway_0l2ou0r" isMarkerVisible="true">
+        <dc:Bounds x="245" y="173" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="247" y="149" width="45" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0xzg8nd_di" bpmnElement="Gateway_0xzg8nd" isMarkerVisible="true">
+        <dc:Bounds x="315" y="285" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="317" y="261" width="45" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0pe3k5t_di" bpmnElement="Gateway_0pe3k5t" isMarkerVisible="true">
+        <dc:Bounds x="385" y="395" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="387" y="371" width="45" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0joj8t5_di" bpmnElement="Activity_01d058x">
+        <dc:Bounds x="480" y="380" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0iqzsw6_di" bpmnElement="Activity_0nyzr1d">
+        <dc:Bounds x="480" y="490" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0maij86_di" bpmnElement="Activity_0jb3342">
+        <dc:Bounds x="480" y="270" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_03lgfa5_di" bpmnElement="Activity_1g04ain">
+        <dc:Bounds x="480" y="158" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0m91liq_di" bpmnElement="Gateway_0m91liq" isMarkerVisible="true">
+        <dc:Bounds x="635" y="173" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1d0blqr_di" bpmnElement="Event_1d0blqr">
+        <dc:Bounds x="742" y="180" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="720" y="223" width="80" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1nhrst0_di" bpmnElement="Association_1nhrst0">
+        <di:waypoint x="168" y="180" />
+        <di:waypoint x="168" y="124" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0hozpvs_di" bpmnElement="Flow_0hozpvs">
+        <di:waypoint x="186" y="198" />
+        <di:waypoint x="245" y="198" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0qqm24u_di" bpmnElement="Flow_0qqm24u">
+        <di:waypoint x="295" y="198" />
+        <di:waypoint x="480" y="198" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="325" y="180" width="9" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0fnghw8_di" bpmnElement="Flow_0fnghw8">
+        <di:waypoint x="270" y="223" />
+        <di:waypoint x="270" y="310" />
+        <di:waypoint x="315" y="310" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="275" y="264" width="21" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ac39rc_di" bpmnElement="Flow_0ac39rc">
+        <di:waypoint x="365" y="310" />
+        <di:waypoint x="480" y="310" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="385" y="292" width="9" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1bqtio2_di" bpmnElement="Flow_1bqtio2">
+        <di:waypoint x="340" y="335" />
+        <di:waypoint x="340" y="420" />
+        <di:waypoint x="385" y="420" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="345" y="375" width="21" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1bpsckh_di" bpmnElement="Flow_1bpsckh">
+        <di:waypoint x="435" y="420" />
+        <di:waypoint x="480" y="420" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="445" y="402" width="9" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1o73h85_di" bpmnElement="Flow_1o73h85">
+        <di:waypoint x="410" y="445" />
+        <di:waypoint x="410" y="530" />
+        <di:waypoint x="480" y="530" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="415" y="485" width="21" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0b4hsii_di" bpmnElement="Flow_0b4hsii">
+        <di:waypoint x="580" y="420" />
+        <di:waypoint x="660" y="420" />
+        <di:waypoint x="660" y="223" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0113xa6_di" bpmnElement="Flow_0113xa6">
+        <di:waypoint x="580" y="530" />
+        <di:waypoint x="660" y="530" />
+        <di:waypoint x="660" y="223" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1px0gfp_di" bpmnElement="Flow_1px0gfp">
+        <di:waypoint x="580" y="310" />
+        <di:waypoint x="660" y="310" />
+        <di:waypoint x="660" y="223" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0l5bexf_di" bpmnElement="Flow_0l5bexf">
+        <di:waypoint x="580" y="198" />
+        <di:waypoint x="635" y="198" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0sxjbrb_di" bpmnElement="Flow_0sxjbrb">
+        <di:waypoint x="685" y="198" />
+        <di:waypoint x="742" y="198" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
