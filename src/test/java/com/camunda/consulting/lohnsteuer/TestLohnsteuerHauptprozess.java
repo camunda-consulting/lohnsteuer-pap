@@ -4,8 +4,6 @@ package com.camunda.consulting.lohnsteuer;
 import org.camunda.community.process_test_coverage.junit5.platform8.ProcessEngineCoverageExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -14,13 +12,14 @@ import io.camunda.zeebe.client.api.response.ProcessInstanceEvent;
 import io.camunda.zeebe.process.test.api.ZeebeTestEngine;
 import io.camunda.zeebe.spring.test.ZeebeSpringTest;
 
-import static io.camunda.zeebe.spring.test.ZeebeTestThreadSupport.*;
-import static org.assertj.core.api.Assertions.*;
 
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
+import static io.camunda.zeebe.spring.test.ZeebeTestThreadSupport.*;
 import static io.camunda.zeebe.process.test.assertions.BpmnAssert.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest
 @ZeebeSpringTest
@@ -32,23 +31,19 @@ public class TestLohnsteuerHauptprozess {
   @Autowired
   ZeebeTestEngine zeebeTestEngine;
   
-  @ParameterizedTest
-  @CsvSource({
-    "0, 1.30, 1, 1, 1, 0, 2500, 200, 300, 100, 25, 2, 3, 1, 1" /*,
-    "2, 0, 2500, 200, 300, 100, 300, 24, 36, 12, 1"*/
-  })
-  public void testLohnsteuer(int krv, double kvz, int pvs, int pvz, int lzz, int af, int re4, int vbez, int lzzfreib, int lzzhinzu, int zre4j, int zvbezj, int jlfreib, int jlhinzu, int f) {
+  @Test
+  public void testLohnsteuerEinfach() {
     Map<String, Object> variables = withVariables(
-        "KRV", krv,
-        "KVZ", kvz,
-        "PVS", pvs,
-        "PVZ", pvz,
-        "LZZ", lzz, 
-        "AF", af, 
-        "RE4", re4, 
-        "VBEZ", vbez, 
-        "LZZFREIB", lzzfreib, 
-        "LZZHINZU", lzzhinzu,
+        "KRV", 0,
+        "KVZ", 1.30,
+        "PVS", 1,
+        "PVZ", 1,
+        "LZZ", 1, 
+        "AF", 0, 
+        "RE4", 2500, 
+        "VBEZ", 200, 
+        "LZZFREIB", 300, 
+        "LZZHINZU", 100,
         "VJAHR", 2006,
         "VBEZM", 10000,
         "VBEZS", 15000,
@@ -59,20 +54,23 @@ public class TestLohnsteuerHauptprozess {
         "ALTER1", 1,
         "AJAHR", 2009,
         "TAB4", new Double[] {0.0, 0.4, 0.384, 0.368, 0.352, 0.336},
-        "TAB5", new Integer[] {0, 1900, 1824, 1748, 1672, 1596});
+        "TAB5", new Integer[] {0, 1900, 1824, 1748, 1672, 1596},
+        "STKL", 2,
+        "PKV", 0,
+        "ZKF", 1);
     
     ProcessInstanceEvent processInstance = client.newCreateInstanceCommand().bpmnProcessId("Lohnsteuer-2022").latestVersion()
         .variables(variables).send().join();
     
-    waitForProcessInstanceCompleted(processInstance);
+    waitForProcessInstanceCompleted(processInstance, Duration.ofSeconds(10));
     
     assertThat(processInstance)
         .isCompleted()
-        .hasVariableWithValue("ZRE4J", zre4j)
-        .hasVariableWithValue("ZVBEZJ", zvbezj)
-        .hasVariableWithValue("JLFREIB", jlfreib)
-        .hasVariableWithValue("JLHINZU", jlhinzu)
-        .hasVariableWithValue("F", f);
+        .hasVariableWithValue("ZRE4J", 25)
+        .hasVariableWithValue("ZVBEZJ", 2)
+        .hasVariableWithValue("JLFREIB", 3)
+        .hasVariableWithValue("JLHINZU", 1)
+        .hasVariableWithValue("F", 1);
   }
 
   private Map<String, Object> withVariables(String key, Object value, Object... keyAndValuePair) {
