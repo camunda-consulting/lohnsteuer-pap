@@ -6,7 +6,11 @@ der vom Arbeitslohn einzubehaltenden Lohnsteuer, des Solidaritätszuschlags
 und der Maßstabsteuer für die Kirchenlohnsteuer für 2022 
 
 ## Vorgehensweise
-Ich habe die Programmablaufpläne aus der o.g. Dokumentation ohne Anpassung in BPMN nachmodelliert. Die Symbole wurde wie folgt übersetzt:
+Ich habe die Programmablaufpläne aus der o.g. Dokumentation ohne Anpassung in BPMN nachmodelliert. 
+
+Dabei wird eine Darstellung nach DIN 66001 in eine Darstellung nach ISO/IEC 19510:2013 überführt.
+
+Die Symbole wurde wie folgt übersetzt:
 * Jeder Terminator (Oval) wird ein Ereignis (Start und Endereignis)
 * Jede Operation (Rechteck) wird zu einer Aktivität. 
 * Die Operationen sind ausnahmslos Zuweisungen, die als Name der Aktivität mit dem Verb "Setze" übernommen wurden. 
