@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="cc3bd3a" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.0.0" camunda:diagramRelationId="dc04a101-9353-4d7e-9e73-e2ce2f0f4f80">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="5b49f8f" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.0.0" camunda:diagramRelationId="dc04a101-9353-4d7e-9e73-e2ce2f0f4f80">
   <bpmn:process id="MBERECH-Unterprozess" name="MBERECH Unterprozess" isExecutable="true">
     <bpmn:startEvent id="StartEvent_1" name="Laufende Lohnzahlungszeitr&#228;ume sollen berechnet werden">
       <bpmn:outgoing>Flow_1axqv17</bpmn:outgoing>
@@ -127,7 +127,7 @@
     <bpmn:sequenceFlow id="Flow_1ult735" sourceRef="Activity_08226k6" targetRef="Activity_1iqnebh" />
     <bpmn:callActivity id="Activity_1iqnebh" name="MLSTJAHR">
       <bpmn:extensionElements>
-        <zeebe:calledElement processId="Noop-Unterprozess" propagateAllChildVariables="false" />
+        <zeebe:calledElement processId="MLSTJAHR-Unterprozess" propagateAllChildVariables="true" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1ult735</bpmn:incoming>
       <bpmn:outgoing>Flow_0dir2cp</bpmn:outgoing>
@@ -166,7 +166,7 @@
     <bpmn:sequenceFlow id="Flow_17vzg9l" sourceRef="Gateway_1yimlup" targetRef="Activity_1mk4w6c" />
     <bpmn:callActivity id="Activity_1mk4w6c" name="MSOLZ">
       <bpmn:extensionElements>
-        <zeebe:calledElement processId="Noop-Unterprozess" propagateAllChildVariables="false" />
+        <zeebe:calledElement processId="MSOLZ-Unterprozess" propagateAllChildVariables="true" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_17vzg9l</bpmn:incoming>
       <bpmn:outgoing>Flow_0iquct2</bpmn:outgoing>

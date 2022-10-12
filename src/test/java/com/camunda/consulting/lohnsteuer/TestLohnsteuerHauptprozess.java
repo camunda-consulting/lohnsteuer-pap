@@ -55,22 +55,42 @@ public class TestLohnsteuerHauptprozess {
         "AJAHR", 2009,
         "TAB4", new Double[] {0.0, 0.4, 0.384, 0.368, 0.352, 0.336},
         "TAB5", new Integer[] {0, 1900, 1824, 1748, 1672, 1596},
-        "STKL", 2,
+        "STKL", 5,
         "PKV", 0,
-        "ZKF", 1);
+        "ZKF", 1,
+        "R", 2,
+        "MBV", 0,
+        "SONSTB", 10000,
+        "STERBE", 5000,
+        "JRE4", 2500,
+        "JVBEZ", 5000,
+        "JFREIB", 5000,
+        "JHINZU", 1000,
+        "JRE4ENT", 0,
+        "VBS", 10000,
+        "SONSTENT", 0,
+        "VKAPA", 10000,
+        "VMT", 5000,
+        "ENTSCH", 15000);
     
     ProcessInstanceEvent processInstance = client.newCreateInstanceCommand().bpmnProcessId("Lohnsteuer-2022").latestVersion()
         .variables(variables).send().join();
     
-    waitForProcessInstanceCompleted(processInstance, Duration.ofSeconds(10));
+    waitForProcessInstanceCompleted(processInstance, Duration.ofSeconds(40));
     
     assertThat(processInstance)
         .isCompleted()
-        .hasVariableWithValue("ZRE4J", 25)
-        .hasVariableWithValue("ZVBEZJ", 2)
-        .hasVariableWithValue("JLFREIB", 3)
-        .hasVariableWithValue("JLHINZU", 1)
-        .hasVariableWithValue("F", 1);
+        .hasVariableWithValue("BK", 0)
+        .hasVariableWithValue("BKS", 0)
+        .hasVariableWithValue("BKV", 0)
+        .hasVariableWithValue("LSTLZZ", 0)
+        .hasVariableWithValue("SOLZLZZ", 0)
+        .hasVariableWithValue("SOLZS", 0)
+        .hasVariableWithValue("SOLZV", 0)
+        .hasVariableWithValue("STS", 0)
+        .hasVariableWithValue("STV", 0)
+        .hasVariableWithValue("VKVLZZ", 0)
+        .hasVariableWithValue("VKVSONST", 0);
   }
 
   private Map<String, Object> withVariables(String key, Object value, Object... keyAndValuePair) {

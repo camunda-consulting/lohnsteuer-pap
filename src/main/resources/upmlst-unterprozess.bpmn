@@ -45,7 +45,7 @@
     </bpmn:sequenceFlow>
     <bpmn:callActivity id="Activity_01hgenp" name="MST5-6">
       <bpmn:extensionElements>
-        <zeebe:calledElement processId="Noop-Unterprozess" propagateAllChildVariables="true" />
+        <zeebe:calledElement processId="MST5-6-Unterprozess" propagateAllChildVariables="true" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1uuye5b</bpmn:incoming>
       <bpmn:outgoing>Flow_0fqwj8y</bpmn:outgoing>
