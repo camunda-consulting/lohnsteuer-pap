@@ -40,7 +40,7 @@ Im Programmablaufplan MZTABFB fehlt die Initialisierung der Variable `EFA`. Hier
 
 
 ## Testabdeckung
-Der Prozess ist als Spring-Zeebe-Test mit Testabdeckung [hier zu finden](doc/testcoverage-static/com.camunda.consulting.lohnsteuer.TestLohnsteuerHauptprozess/report.html)
+Der Prozess ist als Spring-Zeebe-Test mit Testabdeckung [hier zu finden](https://htmlpreview.github.io/?https://github.com/ingorichtsmeier/lohnsteuer-pap/blob/master/doc/testcoverage-static/com.camunda.consulting.lohnsteuer.TestLohnsteuerHauptprozess/report.html)
 
 ## Dauer
 Ich habe insgesamt 2,5 Arbeitstage an den Prozessmodellen samt Test gearbeitet. An den Tagen habe ich auch die wiederkehrenden Tätigkeiten wie Emailbearbeitung durchgeführt. Geschätzt habe ich 13 Stunden an dem Projekt gearbeitet, bei 26 Modellen ergibt das im Schnitt 30 Minuten pro Unterprozess. 
