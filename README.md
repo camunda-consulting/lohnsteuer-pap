@@ -74,7 +74,7 @@ Ideen dazu:
 
 * Bedingungen im Modeler
 
-![Ja-Sequence-Flow](doc/images/Ja-Sequence-Flow.png)
+![Ja-Sequence-Flow](doc/images/Ja-Sequence-flow.png)
 
 * Unterprozesse
 
