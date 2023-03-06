@@ -12,7 +12,6 @@ import io.camunda.zeebe.client.api.response.ProcessInstanceEvent;
 import io.camunda.zeebe.process.test.api.ZeebeTestEngine;
 import io.camunda.zeebe.spring.test.ZeebeSpringTest;
 
-
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +29,29 @@ public class TestLohnsteuerHauptprozess {
   
   @Autowired
   ZeebeTestEngine zeebeTestEngine;
+  
+  @Test
+  public void testMPara() {
+    Map<String, Object> variables = withVariables(
+        "KRV", 0,
+        "PVS", 1,
+        "PVZ", 1
+        );
+    
+    ProcessInstanceEvent processInstance = client
+        .newCreateInstanceCommand()
+        .bpmnProcessId("MPARA-Unterprozess")
+        .latestVersion()
+        .variables(variables)
+        .send()
+        .join();
+    
+    waitForProcessInstanceCompleted(processInstance);
+    
+    assertThat(processInstance)
+        .isCompleted()
+        .hasVariableWithValue("SOLZFREI", 16956);
+  }
   
   @Test
   public void testLohnsteuerEinfach() {

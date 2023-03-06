@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.3.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.0.0" camunda:diagramRelationId="935de1ac-c6f3-45df-9dc8-d73999d9e5a3">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.8.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.2.0" camunda:diagramRelationId="935de1ac-c6f3-45df-9dc8-d73999d9e5a3">
   <bpmn:process id="MPARA-Unterprozess" name="MPARA Unterprozess" isExecutable="true">
     <bpmn:startEvent id="StartEvent_1" name="MPARA soll festgelegt werden">
       <bpmn:outgoing>Flow_02lgcxj</bpmn:outgoing>
@@ -92,177 +92,129 @@
       <bpmn:incoming>Flow_0nrwl36</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_0nrwl36" sourceRef="Activity_1aklf0i" targetRef="Event_067ecvp" />
-    <bpmn:serviceTask id="Activity_1nw2wd6" name="Setze BBGRV = 84600">
+    <bpmn:sequenceFlow id="Flow_14b90sl" sourceRef="Activity_1ykck61" targetRef="Gateway_1szdf74" />
+    <bpmn:scriptTask id="Activity_1nw2wd6" name="Setze BBGRV = 84600">
       <bpmn:extensionElements>
-        <zeebe:ioMapping>
-          <zeebe:output source="=84600" target="BBGRV" />
-        </zeebe:ioMapping>
-        <zeebe:taskDefinition type="noop" />
+        <zeebe:script expression="=84600" resultVariable="BBGRV" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0egagg7</bpmn:incoming>
       <bpmn:outgoing>Flow_1wewrnm</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_1rq63hy" name="Setze BBGRV = 81000">
+    </bpmn:scriptTask>
+    <bpmn:scriptTask id="Activity_1rq63hy" name="Setze BBGRV = 81000">
       <bpmn:extensionElements>
-        <zeebe:ioMapping>
-          <zeebe:output source="=81000" target="BBGRV" />
-        </zeebe:ioMapping>
-        <zeebe:taskDefinition type="noop" />
+        <zeebe:script expression="=81000" resultVariable="BBGRV" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0pdjsfg</bpmn:incoming>
       <bpmn:outgoing>Flow_1r3wi9x</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_1e02cn5" name="Setze RVSATZAN = 0,093">
+    </bpmn:scriptTask>
+    <bpmn:scriptTask id="Activity_1e02cn5" name="Setze RVSATZAN = 0,093">
       <bpmn:extensionElements>
-        <zeebe:ioMapping>
-          <zeebe:output source="=0.093" target="RVSATZAN" />
-        </zeebe:ioMapping>
-        <zeebe:taskDefinition type="noop" />
+        <zeebe:script expression="=0.093" resultVariable="RVSATZAN" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_174gp2g</bpmn:incoming>
       <bpmn:outgoing>Flow_07nvdom</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_1xdgf42" name="Setze TBSVORV = 0,88">
+    </bpmn:scriptTask>
+    <bpmn:scriptTask id="Activity_1xdgf42" name="Setze TBSVORV = 0,88">
       <bpmn:extensionElements>
-        <zeebe:ioMapping>
-          <zeebe:output source="=0.88" target="TBSVORV" />
-        </zeebe:ioMapping>
-        <zeebe:taskDefinition type="noop" />
+        <zeebe:script expression="=0.88" resultVariable="TBSVORV" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_07nvdom</bpmn:incoming>
       <bpmn:outgoing>Flow_0hkqgu7</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_06h4s2p" name="Setze BBGKVPV = 58050">
+    </bpmn:scriptTask>
+    <bpmn:scriptTask id="Activity_06h4s2p" name="Setze BBGKVPV = 58050">
       <bpmn:extensionElements>
-        <zeebe:taskDefinition type="noop" />
-        <zeebe:ioMapping>
-          <zeebe:output source="=58050" target="BBGKVPV" />
-        </zeebe:ioMapping>
+        <zeebe:script expression="=58050" resultVariable="BBGKVPV" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0tno0x0</bpmn:incoming>
       <bpmn:outgoing>Flow_0xi3m9q</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_1usdez8" name="Setze KVSATZAN = KVZ/2/100 + 0,07">
+    </bpmn:scriptTask>
+    <bpmn:scriptTask id="Activity_1usdez8" name="Setze KVSATZAN = KVZ/2/100 + 0,07">
       <bpmn:extensionElements>
-        <zeebe:taskDefinition type="noop" />
-        <zeebe:ioMapping>
-          <zeebe:output source="=KVZ / 2 / 100 + 0.07" target="KVSATZAN" />
-        </zeebe:ioMapping>
+        <zeebe:script expression="=KVZ / 2 / 100 + 0.07" resultVariable="KVSATZAN" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0xi3m9q</bpmn:incoming>
       <bpmn:outgoing>Flow_1g0y4qy</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_0kndrrs" name="Setze KVSATZAG = 0,0065 + 0,007">
+    </bpmn:scriptTask>
+    <bpmn:scriptTask id="Activity_0kndrrs" name="Setze KVSATZAG = 0,0065 + 0,007">
       <bpmn:extensionElements>
-        <zeebe:taskDefinition type="noop" />
-        <zeebe:ioMapping>
-          <zeebe:output source="=0.0065 + 0.007" target="KVSATZAG" />
-        </zeebe:ioMapping>
+        <zeebe:script expression="=0.0065 + 0.007" resultVariable="KVSATZAG" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1g0y4qy</bpmn:incoming>
       <bpmn:outgoing>Flow_0c7wtpb</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_13hydde" name="Setze PVSATZAN = 0,02025">
+    </bpmn:scriptTask>
+    <bpmn:scriptTask id="Activity_13hydde" name="Setze PVSATZAN = 0,02025">
       <bpmn:extensionElements>
-        <zeebe:taskDefinition type="noop" />
-        <zeebe:ioMapping>
-          <zeebe:output source="=0.02025" target="PVSATZAN" />
-        </zeebe:ioMapping>
+        <zeebe:script expression="=0.02025" resultVariable="PVSATZAN" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0gdqdps</bpmn:incoming>
       <bpmn:outgoing>Flow_1pzxd1t</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_1bsifob" name="Setze PVSATZAN = 0,01525">
+    </bpmn:scriptTask>
+    <bpmn:scriptTask id="Activity_1bsifob" name="Setze PVSATZAN = 0,01525">
       <bpmn:extensionElements>
-        <zeebe:taskDefinition type="noop" />
         <zeebe:ioMapping>
           <zeebe:output source="=0.01525" target="PVSATZAN" />
         </zeebe:ioMapping>
+        <zeebe:script expression="=0.01525" resultVariable="PVSATZAN" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0wo184b</bpmn:incoming>
       <bpmn:outgoing>Flow_05oopnd</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_0gb3d7e" name="Setze PVSATZAG = 0,01025">
+    </bpmn:scriptTask>
+    <bpmn:scriptTask id="Activity_0gb3d7e" name="Setze PVSATZAG = 0,01025">
       <bpmn:extensionElements>
-        <zeebe:taskDefinition type="noop" />
-        <zeebe:ioMapping>
-          <zeebe:output source="=0.01025" target="PVSATZAG" />
-        </zeebe:ioMapping>
+        <zeebe:script expression="=0.01025" resultVariable="PVSATZAG" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1pzxd1t</bpmn:incoming>
       <bpmn:outgoing>Flow_0raks9k</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_1beyasc" name="Setze PVSATZAG = 0,01525">
+    </bpmn:scriptTask>
+    <bpmn:scriptTask id="Activity_1beyasc" name="Setze PVSATZAG = 0,01525">
       <bpmn:extensionElements>
-        <zeebe:taskDefinition type="noop" />
-        <zeebe:ioMapping>
-          <zeebe:output source="=0.01525" target="PVSATZAG" />
-        </zeebe:ioMapping>
+        <zeebe:script expression="=0.01525" resultVariable="PVSATZAG" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_05oopnd</bpmn:incoming>
       <bpmn:outgoing>Flow_1eoofee</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:sequenceFlow id="Flow_14b90sl" sourceRef="Activity_1ykck61" targetRef="Gateway_1szdf74" />
-    <bpmn:serviceTask id="Activity_1ykck61" name="Setze PVSATZAN = PVSATZAN + 0,0035">
+    </bpmn:scriptTask>
+    <bpmn:scriptTask id="Activity_1ykck61" name="Setze PVSATZAN = PVSATZAN + 0,0035">
       <bpmn:extensionElements>
-        <zeebe:taskDefinition type="noop" />
-        <zeebe:ioMapping>
-          <zeebe:output source="=PVSATZAN + 0.0035" target="PVSATZAN" />
-        </zeebe:ioMapping>
+        <zeebe:script expression="=PVSATZAN + 0.0035" resultVariable="PVSATZAN" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_15dnoyk</bpmn:incoming>
       <bpmn:outgoing>Flow_14b90sl</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_185e2ap" name="Setze W1STKL5 = 11793">
+    </bpmn:scriptTask>
+    <bpmn:scriptTask id="Activity_185e2ap" name="Setze W1STKL5 = 11793">
       <bpmn:extensionElements>
-        <zeebe:taskDefinition type="noop" />
-        <zeebe:ioMapping>
-          <zeebe:output source="=11793" target="W1STKL5" />
-        </zeebe:ioMapping>
+        <zeebe:script expression="=11793" resultVariable="W1STKL5" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_09hlrzz</bpmn:incoming>
       <bpmn:outgoing>Flow_1hdrgfi</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_1n5jzzc" name="Setze W2STKL5 = 29298">
+    </bpmn:scriptTask>
+    <bpmn:scriptTask id="Activity_1n5jzzc" name="Setze W2STKL5 = 29298">
       <bpmn:extensionElements>
-        <zeebe:taskDefinition type="noop" />
-        <zeebe:ioMapping>
-          <zeebe:output source="=29298" target="W2STKL5" />
-        </zeebe:ioMapping>
+        <zeebe:script expression="=29298" resultVariable="W2STKL5" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1hdrgfi</bpmn:incoming>
       <bpmn:outgoing>Flow_1wuu3zf</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_1p3rzki" name="Setze W3STKL5 = 222260">
+    </bpmn:scriptTask>
+    <bpmn:scriptTask id="Activity_1p3rzki" name="Setze W3STKL5 = 222260">
       <bpmn:extensionElements>
-        <zeebe:taskDefinition type="noop" />
-        <zeebe:ioMapping>
-          <zeebe:output source="=222260" target="W3STKL5" />
-        </zeebe:ioMapping>
+        <zeebe:script expression="=222260" resultVariable="W3STKL5" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1wuu3zf</bpmn:incoming>
       <bpmn:outgoing>Flow_1wx8jnz</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_0p8myzq" name="Setze GFB = 10347">
+    </bpmn:scriptTask>
+    <bpmn:scriptTask id="Activity_0p8myzq" name="Setze GFB = 10347">
       <bpmn:extensionElements>
-        <zeebe:taskDefinition type="noop" />
-        <zeebe:ioMapping>
-          <zeebe:output source="=10347" target="GFB" />
-        </zeebe:ioMapping>
+        <zeebe:script expression="=10347" resultVariable="GFB" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1wx8jnz</bpmn:incoming>
       <bpmn:outgoing>Flow_1fsi3v7</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_1aklf0i" name="Setze SOLZFREI = 16956">
+    </bpmn:scriptTask>
+    <bpmn:scriptTask id="Activity_1aklf0i" name="Setze SOLZFREI = 16956">
       <bpmn:extensionElements>
-        <zeebe:taskDefinition type="noop" />
-        <zeebe:ioMapping>
-          <zeebe:output source="=16956" target="SOLZFREI" />
-        </zeebe:ioMapping>
+        <zeebe:script expression="=16956" resultVariable="SOLZFREI" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1fsi3v7</bpmn:incoming>
       <bpmn:outgoing>Flow_0nrwl36</bpmn:outgoing>
-    </bpmn:serviceTask>
+    </bpmn:scriptTask>
     <bpmn:group id="Group_00w6aio" categoryValueRef="CategoryValue_0laf9vo" />
     <bpmn:group id="Group_0eb2njc" categoryValueRef="CategoryValue_0j1k8jd" />
     <bpmn:group id="Group_0upx1eb" categoryValueRef="CategoryValue_1m3b5sd" />
@@ -338,55 +290,55 @@ Sozialversicherungsparameter</bpmn:text>
           <dc:Bounds x="3326" y="303" width="88" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0nf2eoj_di" bpmnElement="Activity_1nw2wd6">
+      <bpmndi:BPMNShape id="Activity_1hvqitw_di" bpmnElement="Activity_1nw2wd6">
         <dc:Bounds x="470" y="238" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1qe8kf4_di" bpmnElement="Activity_1rq63hy">
+      <bpmndi:BPMNShape id="Activity_13vn8o8_di" bpmnElement="Activity_1rq63hy">
         <dc:Bounds x="470" y="360" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0lf4rxd_di" bpmnElement="Activity_1e02cn5">
+      <bpmndi:BPMNShape id="Activity_000dpl6_di" bpmnElement="Activity_1e02cn5">
         <dc:Bounds x="750" y="238" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0v7imrv_di" bpmnElement="Activity_1xdgf42">
+      <bpmndi:BPMNShape id="Activity_1oqirhy_di" bpmnElement="Activity_1xdgf42">
         <dc:Bounds x="920" y="238" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0lg0qpn_di" bpmnElement="Activity_06h4s2p">
+      <bpmndi:BPMNShape id="Activity_0pzbs6o_di" bpmnElement="Activity_06h4s2p">
         <dc:Bounds x="1220" y="238" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0vli7n6_di" bpmnElement="Activity_1usdez8">
+      <bpmndi:BPMNShape id="Activity_164krry_di" bpmnElement="Activity_1usdez8">
         <dc:Bounds x="1370" y="238" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0vruapb_di" bpmnElement="Activity_0kndrrs">
+      <bpmndi:BPMNShape id="Activity_0xk48nu_di" bpmnElement="Activity_0kndrrs">
         <dc:Bounds x="1520" y="238" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_16t41p9_di" bpmnElement="Activity_13hydde">
+      <bpmndi:BPMNShape id="Activity_14k6mnl_di" bpmnElement="Activity_13hydde">
         <dc:Bounds x="1780" y="238" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0gjshbu_di" bpmnElement="Activity_1bsifob">
+      <bpmndi:BPMNShape id="Activity_130ikzg_di" bpmnElement="Activity_1bsifob">
         <dc:Bounds x="1780" y="350" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0bvgbro_di" bpmnElement="Activity_0gb3d7e">
+      <bpmndi:BPMNShape id="Activity_0f092i8_di" bpmnElement="Activity_0gb3d7e">
         <dc:Bounds x="1940" y="238" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0834bjn_di" bpmnElement="Activity_1beyasc">
+      <bpmndi:BPMNShape id="Activity_1wvwfnn_di" bpmnElement="Activity_1beyasc">
         <dc:Bounds x="1940" y="350" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0tg4ql4_di" bpmnElement="Activity_1ykck61">
+      <bpmndi:BPMNShape id="Activity_0zk1ljv_di" bpmnElement="Activity_1ykck61">
         <dc:Bounds x="2290" y="238" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0cjgmsa_di" bpmnElement="Activity_185e2ap">
+      <bpmndi:BPMNShape id="Activity_1vr4ton_di" bpmnElement="Activity_185e2ap">
         <dc:Bounds x="2550" y="238" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1e0u8c3_di" bpmnElement="Activity_1n5jzzc">
+      <bpmndi:BPMNShape id="Activity_0ktb7lg_di" bpmnElement="Activity_1n5jzzc">
         <dc:Bounds x="2710" y="238" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1k9w7v9_di" bpmnElement="Activity_1p3rzki">
+      <bpmndi:BPMNShape id="Activity_01rdrdl_di" bpmnElement="Activity_1p3rzki">
         <dc:Bounds x="2870" y="238" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1arlfj7_di" bpmnElement="Activity_0p8myzq">
+      <bpmndi:BPMNShape id="Activity_1idqo8i_di" bpmnElement="Activity_0p8myzq">
         <dc:Bounds x="3030" y="238" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1kzvkea_di" bpmnElement="Activity_1aklf0i">
+      <bpmndi:BPMNShape id="Activity_110yxx4_di" bpmnElement="Activity_1aklf0i">
         <dc:Bounds x="3190" y="238" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Group_00w6aio_di" bpmnElement="Group_00w6aio">
@@ -434,7 +386,7 @@ Sozialversicherungsparameter</bpmn:text>
         <di:waypoint x="405" y="278" />
         <di:waypoint x="470" y="278" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="433" y="260" width="9" height="14" />
+          <dc:Bounds x="434" y="260" width="8" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0pdjsfg_di" bpmnElement="Flow_0pdjsfg">
@@ -495,7 +447,7 @@ Sozialversicherungsparameter</bpmn:text>
         <di:waypoint x="1725" y="278" />
         <di:waypoint x="1780" y="278" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1748" y="260" width="9" height="14" />
+          <dc:Bounds x="1749" y="260" width="8" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1pzxd1t_di" bpmnElement="Flow_1pzxd1t">
@@ -531,7 +483,7 @@ Sozialversicherungsparameter</bpmn:text>
         <di:waypoint x="2235" y="278" />
         <di:waypoint x="2290" y="278" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="2258" y="260" width="9" height="14" />
+          <dc:Bounds x="2259" y="260" width="8" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0qcqul0_di" bpmnElement="Flow_0qcqul0">

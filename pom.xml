@@ -5,7 +5,8 @@
   <version>0.0.1-SNAPSHOT</version>
   
   <properties>
-    <spring-zeebe.version>8.0.9</spring-zeebe.version>
+    <spring-zeebe.version>8.1.14</spring-zeebe.version>
+    <zeebe.version>8.2.0-alpha4</zeebe.version>
     <java.version>17</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -25,6 +26,19 @@
 			<scope>test</scope>
 		</dependency>
 		
+    <dependency>
+      <groupId>io.camunda</groupId>
+      <artifactId>zeebe-client-java</artifactId>
+      <version>${zeebe.version}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>io.camunda</groupId>
+      <artifactId>zeebe-process-test-extension</artifactId>
+      <version>${zeebe.version}</version>
+      <scope>test</scope>
+    </dependency>
+
 		<dependency>
       <groupId>org.camunda.community.process_test_coverage</groupId>
       <artifactId>camunda-process-test-coverage-junit5-platform-8</artifactId>
